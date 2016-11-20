@@ -22,6 +22,8 @@ fi
 
 # Variables for this script
 SCALA_VERSION="2.11"
+CP_MAJOR="3.1"
+CP_MINOR="3.1.1"
 KAFKA_VERSION="0.9.0.0"
 CLUSTER_NAME=$(hostname | sed 's/\(.*\)-[m|w]-[0-9]*.*/\1/g')
 BROKER_ID=$(hostname | sed 's/.*-w-\([0-9]\)*.*/\1/g')
@@ -29,8 +31,9 @@ DNS_NAME=$(dnsdomainname)
 
 # Download and extract Kafka
 cd ~
-wget http://www.us.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
-tar zxvf kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
+wget http://packages.confluent.io/archive/${CP_MAJOR}/confluent-oss-${CP_MINOR}-${SCALA_VERSION}.tar.gz
+# wget http://www.us.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
+tar zxvf confluent-oss-${CP_MINOR}-${SCALA_VERSION}.tar.gz
 
 # Configure Kafka
 ZOOKEEPER_INSTANCES=
